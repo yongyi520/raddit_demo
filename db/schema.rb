@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160613075143) do
+ActiveRecord::Schema.define(version: 20160614102059) do
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "link_id",    limit: 4
+    t.text     "body",       limit: 65535
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "comments", ["link_id"], name: "index_comments_on_link_id", using: :btree
 
   create_table "links", force: :cascade do |t|
     t.string   "title",      limit: 255
